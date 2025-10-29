@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
-    <script type="text/javascript" src="./script.js">
+    <script >
 		const form = document.getElementById('infoForm');
     const urlDisplay = document.getElementById('url');
 
@@ -11,10 +11,8 @@
       const name = document.getElementById('name').value.trim();
       const year = document.getElementById('year').value.trim();
 
-      // Base URL
       let baseUrl = "https://localhost:8080/";
 
-      // Build query string dynamically
       let params = [];
 
       if (name) {
@@ -24,12 +22,10 @@
         params.push(`year=${encodeURIComponent(year)}`);
       }
 
-      // Add query string if parameters exist
       if (params.length > 0) {
         baseUrl += "?" + params.join("&");
       }
 
-      // Update <h3> text
       urlDisplay.textContent = baseUrl;
     });
 	</script>
