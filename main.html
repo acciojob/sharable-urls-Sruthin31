@@ -2,16 +2,42 @@
 <html>
   <body>
     <script type="text/javascript" src="./script.js">
+		const form = document.getElementById('infoForm');
+    const urlDisplay = document.getElementById('url');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent form refresh
+
+      const name = document.getElementById('name').value.trim();
+      const year = document.getElementById('year').value.trim();
+
+      // Base URL
+      let baseUrl = "https://localhost:8080/";
+
+      // Build query string dynamically
+      let params = [];
+
+      if (name) {
+        params.push(`name=${encodeURIComponent(name)}`);
+      }
+      if (year) {
+        params.push(`year=${encodeURIComponent(year)}`);
+      }
+
+      // Add query string if parameters exist
+      if (params.length > 0) {
+        baseUrl += "?" + params.join("&");
+      }
+
+      // Update <h3> text
+      urlDisplay.textContent = baseUrl;
+    });
 </script>
 	  <form>
-		  <div>
 		  <label for = "name">Name:</label>
 		  <input type="text" id="name" name="name"/>
-		  </div>
-		  <div>
 			  <label for = "year">Year:</label>
 			  <input type = "number" id ="year" name = "year"/>
-		  </div>
 		  <button type = "submit" id ="button">Submit</button>
 	  </form>
 	  <h3 id ="url">https://localhost:8080/</h3>
